@@ -35,3 +35,31 @@ Things you may want to cover:
 * Deployment instructions https://devcenter.heroku.com/articles/getting-started-with-rails6
 
 
+## Authors
+
+👤 **Author1**
+
+- Github: [@Sotoarmando](https://github.com/Sotoarmando)
+- Twitter: [@Sotoarmando](https://twitter.com/sotoarmando)
+- Linkedin: [Armando Soto](https://linkedin.com/armandosotomelo)
+
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check the [issues page](issues/).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc
+
+## 📝 License
+
+This project is [MIT](lic.url) licensed.
