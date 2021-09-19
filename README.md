@@ -9,6 +9,7 @@ Things you may want to cover:
     - Ruby-2.7.4
     
 * System dependencies
+    - makesure there is a bookandhop_development database
     - postgresql
 
 * Configuration
