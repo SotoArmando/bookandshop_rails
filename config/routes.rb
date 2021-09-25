@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :sessions
+  resources :sessions, only: [:create]
   root 'welcome#index'
   resources :users
   resources :items
