@@ -1,7 +1,17 @@
-# README
+# bookandshop_rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+
+Allows users to make a shopping list and a booking list over models presented on the page using also preview as detailed view.
+
+- https://bookandshoprails.herokuapp.com/
+- https://bookandshoprails.herokuapp.com/items
+- https://bookandshoprails.herokuapp.com/users
+- https://bookandshoprails.herokuapp.com/sessions
+
+- https://bookandshopp.herokuapp.com/
+- https://bookandshopp.herokuapp.com/preview/:id
+- https://bookandshopp.herokuapp.com/shop
+- https://bookandshopp.herokuapp.com/book
 
 Things you may want to cover:
 
