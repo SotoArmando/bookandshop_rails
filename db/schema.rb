@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_25_210033) do
+ActiveRecord::Schema.define(version: 2021_09_30_161840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 2021_09_25_210033) do
     t.string "pictureid"
   end
 
+  create_table "pictures", force: :cascade do |t|
+    t.string "pictureid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pictureid"], name: "index_pictures_on_pictureid", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "user"
     t.datetime "last_session"
@@ -35,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_09_25_210033) do
     t.string "password_digest"
     t.string "bookcart", default: [], array: true
     t.string "shopcart", default: [], array: true
+    t.index ["user"], name: "index_users_on_user", unique: true
   end
 
 end
