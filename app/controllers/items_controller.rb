@@ -1,16 +1,21 @@
 class ItemsController < ApplicationController
+  before_action :authorize_request
   before_action :set_item, only: [:show, :update, :destroy]
 
   # GET /items
   def index
     @items = Item.all
+    response = []
+    for i in @items
+      response << {:item => i, :picture => i.picture }
+    end
 
-    render json: @items
+    render json: response
   end
 
   # GET /items/1
   def show
-    render json: @item
+    render json: {:item => @item, :picture => @item.picture }
   end
 
   # POST /items

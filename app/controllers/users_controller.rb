@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authorize_request, except: :create
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -37,9 +38,6 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    puts(params)
-    puts(params)
-    puts(params)
     if @user.update(JSON.parse params["user"])
       render json: @user
     else
@@ -60,6 +58,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:user, :last_session, :nick, :password)
+      params.require(:user).permit(:user, :nick, :password)
     end
 end
