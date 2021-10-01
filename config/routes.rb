@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   post '/auth', to: 'authentication#login'
-  resources :sessions, only: [:create]
   resources :users
   resources :items
   resources :pictures
