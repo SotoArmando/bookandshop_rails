@@ -2,7 +2,7 @@ require "jsonwebtoken"
 
 class AuthenticationController < ApplicationController
     before_action :authorize_request, except: :login
-  
+
     # POST /auth
     def login
       @user = User.find_by(user: params[:user])
@@ -12,7 +12,8 @@ class AuthenticationController < ApplicationController
         render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
                        username: @user.user,
                        bookcart: @user.bookcart,
-                       shopcart: @user.shopcart}, status: :ok
+                       shopcart: @user.shopcart,
+                       id: @user.id}, status: :ok
       else
         render json: { error: 'unauthorized' }, status: :unauthorized
       end
