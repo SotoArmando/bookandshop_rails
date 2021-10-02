@@ -10,7 +10,7 @@ class AuthenticationController < ApplicationController
         token = Jsonwebtoken.encode(user_id: @user.id)
         time = Time.now + 24.hours.to_i
         render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
-                       username: @user.user,
+                       user: @user.user,
                        bookcart: @user.bookcart,
                        shopcart: @user.shopcart,
                        id: @user.id}, status: :ok
