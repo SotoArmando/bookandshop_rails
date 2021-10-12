@@ -1,21 +1,15 @@
 class ItemsController < ApplicationController
-  before_action :authorize_request, except: [:index, :show]
+  # before_action :authorize_request, except: [:index, :show]
   before_action :set_item, only: [:show, :update, :destroy]
 
   # GET /items
   def index
-    @items = Item.all
-    response = []
-    for i in @items
-      response << {:item => i, :picture => i.picture }
-    end
-
-    render json: response
+    render json: Item.all, include: [:picture]
   end
 
   # GET /items/1
   def show
-    render json: {:item => @item, :picture => @item.picture }
+    render json: @item , include: [:picture]
   end
 
   # POST /items
@@ -26,7 +20,7 @@ class ItemsController < ApplicationController
       render json: @item, status: :created, location: @item
     else
       render json: @item.errors, status: :unprocessable_entity
-    end
+    end   
   end
 
   # PATCH/PUT /items/1
@@ -42,12 +36,13 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   def destroy
     @item.destroy
+    redirect_to action: "index"
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @item = Item.includes(:picture).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

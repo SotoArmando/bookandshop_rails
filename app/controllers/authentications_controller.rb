@@ -1,18 +1,17 @@
 require "jsonwebtoken"
 
-class AuthenticationController < ApplicationController
-    before_action :authorize_request, except: :login
+class AuthenticationsController < ApplicationController
 
-    # POST /auth
-    def login
-      @user = User.find_by(user: params[:user])
-      if @user&.authenticate(params[:password])
+    # POST /authentication
+    def create
+      @user = User.find_by(user: user_params[:user] )
+      if @user&.authenticate(user_params[:password])
         token = Jsonwebtoken.encode(user_id: @user.id)
         time = Time.now + 24.hours.to_i
         render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
                        user: @user.user,
-                       bookcart: @user.bookcart,
-                       shopcart: @user.shopcart,
+                       bookcart: @user.bookeditem,
+                       shopcart: @user.cartitem,
                        id: @user.id}, status: :ok
       else
         render json: { error: '[Unauthorized] Wrong credentials' }, status: :unauthorized
@@ -20,8 +19,8 @@ class AuthenticationController < ApplicationController
     end
   
     private
-  
-    def login_params
-      params.permit(:user, :password)
-    end
+
+      def user_params
+        params.require(:user).permit(:user, :password)
+      end
 end

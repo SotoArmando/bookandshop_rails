@@ -4,7 +4,6 @@ class PicturesController < ApplicationController
 
   def index
     @items = Picture.all
-
     render json: @items
   end
 
@@ -20,14 +19,11 @@ class PicturesController < ApplicationController
   def show
     render json: @item
   end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Picture.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
-    def item_params
-      params.require(:item).permit(:make, :model, :year, :duration)
-    end
 end

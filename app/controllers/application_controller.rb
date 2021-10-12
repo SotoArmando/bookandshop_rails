@@ -1,7 +1,9 @@
 require "jsonwebtoken"
 
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
     include ActionController::MimeResponds
+    protect_from_forgery with: :null_session
+    
     def not_found
         render json: { error: 'not_found' }
     end

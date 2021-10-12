@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_06_223146) do
+ActiveRecord::Schema.define(version: 2021_10_08_184120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookeditems", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cartitems", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "make"
@@ -41,8 +55,6 @@ ActiveRecord::Schema.define(version: 2021_10_06_223146) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
-    t.string "bookcart", default: [], array: true
-    t.string "shopcart", default: [], array: true
     t.index ["user"], name: "index_users_on_user", unique: true
   end
 

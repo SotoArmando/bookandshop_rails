@@ -1,0 +1,13 @@
+<html>
+<head>
+  <title><%= @page_title or "Page Title" %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/dev-assets/index.css" rel="stylesheet"/>
+</head>
+<body class="col gbasis_20">
+  <div class="corebox_3 fixed row items_center pad_l22 pad_r22 back_2 boxshadow_30">Bookandshoprails - Panel</div>
+  <div class="maxedcorebox_3"></div>
+  <div id="content" class="back_2"><%= content_for?(:content) ? yield(:content) : yield %></div>
+</body> 
+</html>
+
