@@ -19,7 +19,6 @@ class CartitemsController < ApplicationController
     end
     def destroy
         @item.destroy
-        redirect_to action: "index"
     end
 
     private
