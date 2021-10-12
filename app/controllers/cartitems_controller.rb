@@ -1,4 +1,5 @@
 class CartitemsController < ApplicationController
+    before_action :authorize_request, except: [:index, :show]
     before_action :set_item, only: [:show, :update, :destroy]
     def create
         @user = User.find(cartitem_params[:user_id])
