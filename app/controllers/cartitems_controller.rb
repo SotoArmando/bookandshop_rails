@@ -23,7 +23,7 @@ class CartitemsController < ApplicationController
 
     private
         def cartitem_params
-            params.permit(:user_id, :item_id)
+            params.permit(:user_id, :item_id, :appointment_id)
         end
         def set_item
             @item = Cartitem.find(params[:id])

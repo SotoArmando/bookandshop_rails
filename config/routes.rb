@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resource :authentication
   resources :users
+  resources :appointments
   resources :items
   resources :pictures
   resources :cartitems

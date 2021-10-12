@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    render json: User.all, include: [:cartitem,:bookeditem]
+    render json: User.all, include: [:cartitem,:bookeditem,:appointment]
   end
 
   # GET /users/1
@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    
     @user = User.new(user_params)
 
     if @user.save
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
           # Tell the UserMailer to send a welcome email after save
           UserMailer.with(user: @user).welcome_email.deliver_now
   
-          format.json { render json: @user, status: :created }
+          format.json { render json: @user, include: [:bookeditem, :cartitem, :appointment], status: :created }
         else
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end

@@ -4,6 +4,7 @@ class User < ApplicationRecord
     has_secure_password
     has_many :bookeditem
     has_many :cartitem
+    has_many :appointment
     validates :user, presence: true, uniqueness: true
     validates :user, format: { with: URI::MailTo::EMAIL_REGEXP }
     validates :password,
