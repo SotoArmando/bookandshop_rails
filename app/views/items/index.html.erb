@@ -1,0 +1,65 @@
+<style>
+    .selected {
+        background-color: #b1fbb1;
+        color: green;
+    }
+    .selectable::before {
+        content: 'Not selected'
+    }
+    .selected::before {
+        content: 'Selected';
+    }
+    
+</style>
+<form action="item/" method="DELETE" >
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+</form>
+<div class="col allsize ">
+    <div class="row items_center corebox_3 border_t0 wrap ">
+
+        <button class="corebox_2 corebox_x7 center f_0  ls_30 btn_u half_horizontalmargin mar_l20 mar_r_20">Create</button>
+        <button class="corebox_2 corebox_x7 center f_0  ls_30 btn_u half_horizontalmargin mar_l20 mar_r_20">Read</button>
+        <button class="corebox_2 corebox_x7 center f_0  ls_30 btn_u half_horizontalmargin mar_l20 mar_r_20">Update</button>
+
+    </div>
+    <div class="row wrap gbasis_40 border_b0  ls_33 border_t0 border_b0">
+        <span class="center corebox_0 pad_22 capitalize f_0 ">make</span>
+        <span class="center corebox_0 pad_22 capitalize f_0">description</span>
+        <span class="center corebox_0 pad_22 capitalize f_0">model</span>
+        <span class="center corebox_0 pad_22 capitalize f_0">year</span>   
+        <span class="center corebox_0 pad_22 capitalize f_0"></span>   
+    </div>
+
+    <% @items.each do |item| -%>
+        <% if item.id.odd?  %>
+            <div class="row wrap gbasis_40  border_b0  corebox_5" onclick="selectElement(this)">   
+        <% else %>
+            <div class="row wrap gbasis_40 back_9 border_b0  corebox_5" onclick="selectElement(this)">
+        <% end %> 
+            <span class="center corebox_0 pad_22 pad_b23  border_r0"><%= item.make %></span>
+            <span class="center corebox_0 pad_22 pad_b23 border_r0 "><%= item.description %></span>
+            <span class="center corebox_0 pad_22 pad_b23 border_r0"><%= item.model %></span>
+            <span class="center corebox_0 pad_22 pad_b23 border_r0"><%= item.year %></span>
+            <div class="center corebox_0 pad_22 pad_b23 border_r0">
+                <%= form_with url: item_path(item.id), method: "delete", html: {class: "contents btn_u"} do |form| %>
+                    <%= form.submit "Delete" %>
+                <% end %>
+            </div>
+        </div>
+    <% end -%>
+</div>
+
+<script>
+    const url ="/items/"
+    const urlid = (id) => url + id;
+    const selectElement = (element) => {
+        debugger;
+        document.querySelectorAll('.selected').forEach(e => e.classList.toggle('selected'))
+        const { id } = element.children[0].dataset;
+        document.querySelector('[data-method="delete"]').pathname = urlid(id)
+        element.children[0].classList.toggle('selected');   
+    }
+
+
+</script>
+

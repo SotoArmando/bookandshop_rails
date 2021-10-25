@@ -1,16 +1,13 @@
 require 'bcrypt'
 
 class User < ApplicationRecord
-    include BCrypt
-
-    def password
-      @password ||= Password.new(password_digest)
-    end
-  
-    def password=(new_password)
-      @password = Password.create(new_password)
-      self.password_hash = @password
-    end
     has_secure_password
-
+    has_many :bookeditem
+    has_many :cartitem
+    has_many :appointment
+    validates :user, presence: true, uniqueness: true
+    validates :user, format: { with: URI::MailTo::EMAIL_REGEXP }
+    validates :password,
+              length: { minimum: 6 },
+              if: -> { new_record? || !password.nil? }
 end
